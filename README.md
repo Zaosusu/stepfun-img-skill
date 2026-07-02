@@ -1,60 +1,51 @@
 # stepfun-img-skill
 
-StepFun 图片生成 / 图像编辑 Skill，支持中文搜索关键词：StepFun 文生图、StepFun 图像编辑、StepFun AI 作图、Step Plan 图像接口、step-image-edit-2、OpenAI SDK 图片生成。
+StepFun image generation and editing skill for Codex, built on Step Plan and `step-image-edit-2`.
 
-如果你在找这些内容，这个仓库就是：
-- StepFun 图片生成
-- StepFun 图像编辑
-- StepFun 文生图
-- StepFun AI 作图
-- Step Plan 接入示例
-- step-image-edit-2 使用示例
-- OpenAI SDK 调用 StepFun 图片接口
-- Codex skill 图像生成
+## What this repo does
 
-## 简介
+- Text-to-image generation with StepFun Step Plan
+- Image editing with StepFun Step Plan
+- OpenAI SDK based calling flow
+- Codex-friendly scripts and docs
 
-这是一个给 Codex 使用的 StepFun 图像 skill，基于 Step Plan 的图像生成与图像编辑接口：
-- 生成接口：`https://api.stepfun.com/step_plan/v1/images/generations`
-- 编辑接口：`https://api.stepfun.com/step_plan/v1/images/edits`
-- 支持模型：`step-image-edit-2`
+## Quick Start
 
-你可以把它理解成一个轻量的 StepFun 文生图 / 图像编辑工具包，适合直接拿来改 prompt、做图片生成测试、或者集成到自己的 Codex 工作流里。
-
-## 快速开始
-
-1. 在本机准备密钥文件：`~/.stepfun-img/secret.json`
-2. 填入你的 StepFun API Key：
+1. Create `~/.stepfun-img/secret.json`:
 
 ```json
 { "apiKey": "YOUR_STEP_API_KEY" }
 ```
 
-3. 生成图片：
+2. Generate an image:
 
 ```powershell
 python scripts/generate_image.py "your prompt here" --model step-image-edit-2 --size 1024x1024 --out outputs/image.png
 ```
 
-4. 编辑图片：
+3. Edit an image:
 
 ```powershell
 python scripts/edit_image.py "path/to/source.png" "your edit prompt" --model step-image-edit-2 --out outputs/edited_image.png
 ```
 
-## 适合搜索的关键词
+## Why this repo exists
+
+This repository packages a working StepFun image skill for people who want a simple image generation / image editing workflow with Step Plan.
+
+## Chinese search keywords
 
 StepFun 图片生成, StepFun 图像编辑, StepFun 文生图, StepFun AI 作图, Step Plan 图像接口, step-image-edit-2, OpenAI SDK 图片生成, Codex skill, 中文提示词, 图像生成, 图像编辑, AI 绘图, 生成图片, 编辑图片
 
-## 文件说明
+## Files
 
-- `SKILL.md`: skill 使用说明
-- `scripts/generate_image.py`: 文生图脚本
-- `scripts/edit_image.py`: 图像编辑脚本
-- `references/api_spec.md`: API 参考
+- `SKILL.md`: skill instructions
+- `scripts/generate_image.py`: text-to-image runner
+- `scripts/edit_image.py`: image edit runner
+- `references/api_spec.md`: API notes
 
-## 说明
+## Notes
 
-- 这个仓库默认面向 `step_plan/v1`
-- 目前只支持 `step-image-edit-2`
-- 适合中文 prompt、英文 prompt 和中英混合 prompt
+- Base URL: `https://api.stepfun.com/step_plan/v1`
+- Supported model: `step-image-edit-2`
+- The API returns `url` or `b64_json`
