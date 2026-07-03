@@ -40,6 +40,7 @@ python scripts/edit_image.py "path/to/source.png" "your edit prompt" --model ste
 - `negative_prompt`: unwanted features to suppress. Only `step-image-edit-2` supports it.
 - `text_mode`: optimize for text-heavy scenes. Only `step-image-edit-2` supports it.
 - `style_reference`: style reference for `step-1x-medium`.
+
 ## Chinese search keywords
 
 StepFun 图片生成, StepFun 图像编辑, StepFun 文生图, StepFun AI 作图, Step Plan 图像接口, step-image-edit-2, OpenAI SDK 图片生成, Codex skill, 中文提示词, 图像生成, 图像编辑, AI 绘图, 生成图片, 编辑图片
