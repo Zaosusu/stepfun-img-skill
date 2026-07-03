@@ -56,18 +56,28 @@ python scripts/edit_image.py "path/to/source.png" "your edit prompt" --model ste
 
 | Flag | Type | Default | Notes |
 |---|---|---|---|
-| `prompt` | str | required | Text prompt for generation |
-| `image` | str | required | Source image path for edit workflow |
-| `--model` | str | `step-image-edit-2` | Only `step-image-edit-2` is supported under `step_plan/v1` |
-| `--size` | str | `1024x1024` | Use one of the supported sizes above |
-| `--steps` | int | `8` | Range `1` to `50` |
-| `--seed` | int | unset | Integer seed |
-| `--cfg-scale` | float | `1.0` | Guidance scale |
-| `--neg-prompt` | str | `""` | Negative prompt |
-| `--text-mode` | bool | `false` | Text-scene optimization |
-| `--n` | int | `1` | Only `1` is supported |
-| `--response-format` | str | `url` | `url` or `b64_json` |
-| `--out` | str | `outputs/...` | Output path |
+| `prompt` | str | required | Text prompt for generation. Maximum 512 characters. |
+| `image` | str | required | Source image path for edit workflow. |
+| `--model` | str | `step-image-edit-2` | Supported models: `step-image-edit-2` (recommended), `step-2x-large`, `step-1x-medium`. Only `step-image-edit-2` is supported under `step_plan/v1`. |
+| `--size` | str | `1024x1024` | Image size. `step-image-edit-2` supports `1024x1024`, `768x1360`, `896x1184`, `1360x768`, `1184x896`. `step-2x-large` and `step-1x-medium` support `256x256`, `512x512`, `768x768`, `1024x1024`, `1280x800`, `800x1280`. |
+| `--steps` | int | model-dependent | Generation steps. `step-image-edit-2`: `1` to `50`, default `8`. `step-2x-large` and `step-1x-medium`: `1` to `50`, default `50`. |
+| `--seed` | int | unset | Random seed. `step-image-edit-2`: `0` to `2147483647`. `step-2x-large` and `step-1x-medium`: `0` means system-random seed. |
+| `--cfg-scale` | float | model-dependent | Guidance scale. `step-image-edit-2`: `1.0` to `10.0`, default `1.0`. `step-2x-large`: `1.0` to `10.0`, default `6.0`. `step-1x-medium`: `1.0` to `10.0`, default `7.5`. |
+| `--neg-prompt` | str | `""` | Negative prompt. Only `step-image-edit-2` supports this. Max 512 characters. |
+| `--text-mode` | bool | `false` | Text-scene optimization. Only `step-image-edit-2` supports this. |
+| `--n` | int | `1` | Number of images. Only `1` is currently supported. |
+| `--response-format` | str | `url` | `url` or `b64_json`. |
+| `--style-reference` | object | unset | Style reference for `step-1x-medium`. `source_url` is required; `weight` is optional and ranges `(0, 2]`. |
+| `--out` | str | `outputs/...` | Output path. |
+
+## Parameter Notes
+
+- `seed` helps make results more repeatable when you want to compare prompt changes.
+- `steps` controls how long the model spends refining the image.
+- `cfg_scale` controls how strongly the model follows the prompt.
+- `negative_prompt` helps suppress unwanted visual features.
+- `text_mode` is useful when the image needs prominent or accurate text rendering.
+- `style_reference` lets `step-1x-medium` borrow style from a reference image URL or base64 payload.
 
 ## Response
 
